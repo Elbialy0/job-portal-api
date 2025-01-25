@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
@@ -22,18 +22,18 @@ public class Users {
     private LocalDate registertionDate;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_type_id")
-    private UsersType usersType;
-    public Users(){
+    private UserType userType;
+    public User(){
 
     }
 
-    public Users(int userId, String email, String password, boolean isActive, LocalDate registrtionDate, UsersType usersType) {
+    public User(int userId, String email, String password, boolean isActive, LocalDate registrtionDate, UserType userType) {
         this.userId = userId;
         this.email = email;
         this.password = password;
         this.isActive = isActive;
         this.registertionDate = registrtionDate;
-        this.usersType = usersType;
+        this.userType = userType;
     }
 
     public int getUserId() {
@@ -76,12 +76,12 @@ public class Users {
         this.registertionDate = registrtionDate;
     }
 
-    public UsersType getUsersType() {
-        return usersType;
+    public UserType getUsersType() {
+        return userType;
     }
 
-    public void setUsersType(UsersType usersType) {
-        this.usersType = usersType;
+    public void setUsersType(UserType userType) {
+        this.userType = userType;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Users {
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
                 ", registrtionDate=" + registertionDate +
-                ", usersType=" + usersType +
+                ", usersType=" + userType +
                 '}';
     }
 }

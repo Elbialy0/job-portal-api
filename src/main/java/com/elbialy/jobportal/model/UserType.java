@@ -1,23 +1,25 @@
 package com.elbialy.jobportal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users_type")
-public class UsersType {
+public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userTypeId;
     private String userTypeName;
-    @OneToMany(targetEntity = Users.class,mappedBy = "usersType")
-    private List<Users> users;
+    @OneToMany(mappedBy = "userType")
+    @JsonIgnore
+    private List<User> users;
 
-    public UsersType() {
+    public UserType() {
     }
 
-    public UsersType(int userTypeId, String userTypeName, List<Users> users) {
+    public UserType(int userTypeId, String userTypeName, List<User> users) {
         this.userTypeId = userTypeId;
         this.userTypeName = userTypeName;
         this.users = users;
@@ -39,11 +41,11 @@ public class UsersType {
         this.userTypeName = userTypeName;
     }
 
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<Users> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
